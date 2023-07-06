@@ -12,22 +12,22 @@ def main():
     # Test that water is only given each hour 8-11 and 13-19.
     for hour in range(0, 23):
         if hour in WATER_HOURS:
-            if not "Give water." in cat_controller.hourly_run(hour):
+            if "Give water." not in cat_controller.hourly_run(hour):
                 test_failed = True
         elif "Give water." in cat_controller.hourly_run(hour):
             test_failed = True
 
     # Test that cat cage is opened at 7:
-    if not "Open cat cage." in cat_controller.hourly_run(7):
+    if "Open cat cage." not in cat_controller.hourly_run(7):
         test_failed = True
 
     # Test that cat cage is closed at 20:
-    if not "Close cat cage." in cat_controller.hourly_run(20):
+    if "Close cat cage." not in cat_controller.hourly_run(20):
         test_failed = True
 
     # Test that cat is fed at 8, 12 and 17.
     for hour in [8, 12, 17]:
-        if not "Feed" in cat_controller.hourly_run(hour):
+        if "Feed" not in cat_controller.hourly_run(hour):
             test_failed = True
 
     # Test that cat is fed 1 mouse, 1 hamster and 1 chicken per day.
